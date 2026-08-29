@@ -1,0 +1,22 @@
+# --- Core (Phase 1) ---
+python-dotenv==1.0.1
+requests==2.32.3
+
+# --- LLM clients ---
+# OpenRouter uses the OpenAI-compatible API, so we just need the openai package
+openai==1.51.0
+# groq==0.11.0                 # uncomment if using Groq instead/also
+# google-generativeai==0.8.3   # uncomment if using Gemini instead/also
+
+# --- SQL validation (Phase 2) ---
+sqlglot==25.24.5
+
+# --- Embeddings / retrieval (Phase 4, add later) ---
+# sentence-transformers==3.1.1
+# chromadb==0.5.15
+
+# --- UI (Phase 4, add later) ---
+# streamlit==1.39.0
+
+# --- Dev/testing ---
+pytest==8.3.3
