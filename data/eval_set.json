@@ -1,0 +1,34 @@
+[
+  {
+    "question": "How many customers are there?",
+    "expected_sql": "SELECT COUNT(*) FROM Customer;"
+  },
+  {
+    "question": "List all genres",
+    "expected_sql": "SELECT Name FROM Genre;"
+  },
+  {
+    "question": "How many tracks are in the database?",
+    "expected_sql": "SELECT COUNT(*) FROM Track;"
+  },
+  {
+    "question": "Which customers are from Brazil?",
+    "expected_sql": "SELECT FirstName, LastName FROM Customer WHERE Country = 'Brazil';"
+  },
+  {
+    "question": "List all albums by AC/DC",
+    "expected_sql": "SELECT al.Title FROM Album al JOIN Artist ar ON al.ArtistId = ar.ArtistId WHERE ar.Name = 'AC/DC';"
+  },
+  {
+    "question": "What is the total number of invoices?",
+    "expected_sql": "SELECT COUNT(*) FROM Invoice;"
+  },
+  {
+    "question": "Which genre has the most tracks?",
+    "expected_sql": "SELECT g.Name, COUNT(*) AS track_count FROM Track t JOIN Genre g ON t.GenreId = g.GenreId GROUP BY g.GenreId ORDER BY track_count DESC LIMIT 1;"
+  },
+  {
+    "question": "What is the total revenue from all invoices?",
+    "expected_sql": "SELECT SUM(Total) FROM Invoice;"
+  }
+]

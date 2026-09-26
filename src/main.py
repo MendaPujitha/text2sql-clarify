@@ -1,17 +1,18 @@
 """
-Phase 1: CLI entry point.
+Phase 2: CLI entry point with schema linking and self-correction.
 
 Run with:
     python src/main.py
 """
 from executor import get_schema, run_sql
-from sql_generator import generate_sql
+from schema_linker import relevant_tables
+from sql_generator import generate_sql_with_retry
 
 
 def main():
-    print("Text-to-SQL (Phase 1) -- type a question, or 'quit' to exit.\n")
+    print("Text-to-SQL (Phase 2) -- type a question, or 'quit' to exit.\n")
 
-    schema = get_schema()
+    full_schema = get_schema()
 
     while True:
         question = input("Ask a question about the database: ").strip()
@@ -21,10 +22,10 @@ def main():
             continue
 
         try:
-            sql = generate_sql(schema, question)
-            print(f"\nGenerated SQL:\n  {sql}\n")
+            schema = relevant_tables(full_schema, question)
+            sql, columns, rows = generate_sql_with_retry(schema, question, run_sql)
 
-            columns, rows = run_sql(sql)
+            print(f"\nGenerated SQL:\n  {sql}\n")
             print("Result:")
             print("  " + " | ".join(columns))
             for row in rows[:20]:
@@ -33,7 +34,7 @@ def main():
                 print(f"  ... ({len(rows) - 20} more rows)")
             print()
         except Exception as e:
-            print(f"\nError: {e}\n")
+            print(f"\nError after retries: {e}\n")
 
 
 if __name__ == "__main__":
