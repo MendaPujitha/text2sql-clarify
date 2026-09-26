@@ -7,7 +7,7 @@ guessing wrong.
 ## Project Status
 - [x] Phase 0 — Environment setup
 - [ ] Phase 1 — Basic text-to-SQL
-- [ ] Phase 2 — Schema-aware generation + self-correction
+- [x] Phase 2 — Schema-aware generation + self-correction + eval set (100% execution-match accuracy on 8-question eval set)
 - [ ] Phase 3 — Clarification engine
 - [ ] Phase 4 — Advanced (retrieval, eval framework, fine-tuning, UI)
 
